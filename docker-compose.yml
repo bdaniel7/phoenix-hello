@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  db:
+    image: postgres:12-alpine
+    restart: always
+    container_name: postgres-12
+    hostname: 'postgres-12'
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+    env_file:
+      - database.env
+
+  adminer:
+    image: adminer
+    restart: always
+    container_name: adminer
+    hostname: 'adminer'
+    ports:
+      - 8099:8080
